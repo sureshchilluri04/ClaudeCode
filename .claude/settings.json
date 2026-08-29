@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; printf 'File: %s\\nTimestamp: %s\\nDate: %s\\n\\n' \"$f\" \"$(date +%H:%M:%S)\" \"$(date +%Y-%m-%d)\" >> \"$CLAUDE_PROJECT_DIR/ModifiedFile.txt\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Ping.aiff 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.transcript_path' | { read -r tp; prompt=$(jq -rs '[.[] | select(.type==\"user\" and (.message.content|type)==\"string\")] | last | .message.content' \"$tp\" 2>/dev/null); printf 'Prompt: %s\\nTimestamp: %s\\nDate: %s\\n\\n' \"$prompt\" \"$(date +%H:%M:%S)\" \"$(date +%Y-%m-%d)\" >> \"$CLAUDE_PROJECT_DIR/timestamp.txt\"; } 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

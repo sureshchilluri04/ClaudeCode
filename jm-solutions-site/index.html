@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JM Solutions — AI Delivery Systems for Marketing Agencies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#0B1220',
+          panel: '#121B2E',
+          border: '#243044',
+          amber: { DEFAULT: '#F59E0B', light: '#FBBF24' },
+          violet: '#8B5CF6',
+          muted: '#94A3B8',
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
+          display: ['Space Grotesk', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0B1220; color: #F1F5F9; font-family: 'Plus Jakarta Sans', sans-serif; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(148,163,184,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glow {
+    background: radial-gradient(600px circle at var(--x,50%) var(--y,0%), rgba(245,158,11,0.15), transparent 60%);
+  }
+
+  .card-hover { transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(245,158,11,0.4); box-shadow: 0 20px 40px -20px rgba(245,158,11,0.25); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #FBBF24, #F59E0B 50%, #8B5CF6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  ::selection { background: rgba(245,158,11,0.3); }
+
+  .nav-blur { backdrop-filter: blur(12px); background: rgba(11,18,32,0.75); }
+
+  .num-badge {
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(139,92,246,0.15));
+  }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+</style>
+</head>
+<body class="antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-amber focus:text-bg focus:px-4 focus:py-2 focus:rounded-lg">Skip to content</a>
+
+<!-- NAVBAR -->
+<header class="fixed top-4 left-4 right-4 z-50">
+  <nav class="max-w-6xl mx-auto nav-blur border border-border rounded-2xl px-5 py-3 flex items-center justify-between">
+    <a href="#main" class="flex items-center gap-2 cursor-pointer" aria-label="JM Solutions home">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="28" height="28" rx="8" fill="url(#navgrad)"/>
+        <path d="M8 14L12.5 18.5L20 9" stroke="#0B1220" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="navgrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FBBF24"/>
+            <stop offset="1" stop-color="#8B5CF6"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="font-display font-semibold text-lg tracking-tight">JM Solutions</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-muted">
+      <a href="#solution" class="hover:text-white transition-colors duration-200">Solution</a>
+      <a href="#process" class="hover:text-white transition-colors duration-200">Process</a>
+      <a href="#results" class="hover:text-white transition-colors duration-200">Results</a>
+      <a href="#pricing" class="hover:text-white transition-colors duration-200">Pricing</a>
+      <a href="#faq" class="hover:text-white transition-colors duration-200">FAQ</a>
+    </div>
+    <a href="#book" class="cursor-pointer inline-flex items-center gap-1.5 bg-amber hover:bg-amber-light text-bg text-sm font-semibold px-4 py-2 rounded-xl transition-colors duration-200">
+      Book a Call
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="relative pt-40 pb-28 px-4 grid-bg overflow-hidden">
+  <div class="absolute inset-0 glow pointer-events-none" style="--x:50%; --y:-10%"></div>
+  <div class="max-w-5xl mx-auto text-center relative">
+    <div class="reveal in inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 text-xs font-medium text-muted mb-8 bg-panel/60">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber animate-pulse"></span>
+      AI Delivery Systems for Marketing Agencies
+    </div>
+    <h1 class="reveal in font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
+      Double your agency's client delivery <span class="gradient-text">in 30 days</span> — without hiring
+    </h1>
+    <p class="reveal in text-lg text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+      JM Solutions builds AI-powered delivery systems for marketing agencies — automating reporting, onboarding,
+      content ops, and client comms so your team ships twice the work with the same headcount.
+    </p>
+    <div class="reveal in flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#book" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-light text-bg font-semibold px-7 py-3.5 rounded-xl transition-colors duration-200">
+        Book Your Free Delivery Audit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#process" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-border hover:border-muted text-white font-semibold px-7 py-3.5 rounded-xl transition-colors duration-200">
+        See How It Works
+      </a>
+    </div>
+    <p class="reveal in text-xs text-muted mt-6">No contracts. Results-based engagement. 30-day implementation.</p>
+  </div>
+
+  <!-- Stat strip -->
+  <div class="reveal in max-w-4xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 relative">
+    <div class="text-center">
+      <p class="font-display text-3xl font-bold gradient-text">2x</p>
+      <p class="text-xs text-muted mt-1">Client Delivery Capacity</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-3xl font-bold gradient-text">30</p>
+      <p class="text-xs text-muted mt-1">Days to Full Deployment</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-3xl font-bold gradient-text">18+</p>
+      <p class="text-xs text-muted mt-1">Agencies Automated</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-3xl font-bold gradient-text">40%</p>
+      <p class="text-xs text-muted mt-1">Avg. Ops Cost Reduction</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="px-4 py-24 border-t border-border">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal text-center mb-16">
+      <p class="text-amber text-sm font-semibold tracking-wide uppercase mb-3">The Problem</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">Your agency is capped by manual work, not demand</h2>
+      <p class="text-muted mt-4 max-w-2xl mx-auto">Every new client means more reporting, more onboarding calls, more manual content review. Growth adds headcount cost before it adds margin.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal bg-panel border border-border rounded-2xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-red-400" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Reporting eats your best hours</h3>
+        <p class="text-sm text-muted leading-relaxed">Account managers spend 8+ hours a week pulling data and formatting client reports instead of doing strategic work.</p>
+      </div>
+      <div class="reveal bg-panel border border-border rounded-2xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-red-400" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Onboarding doesn't scale</h3>
+        <p class="text-sm text-muted leading-relaxed">Every new client restarts the same manual intake, asset collection, and kickoff process from scratch.</p>
+      </div>
+      <div class="reveal bg-panel border border-border rounded-2xl p-6">
+        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-red-400" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2">Hiring can't keep pace</h3>
+        <p class="text-sm text-muted leading-relaxed">More clients means more hires — but ramp-up time and payroll eat the margin growth was supposed to create.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="px-4 py-24 border-t border-border grid-bg">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-16">
+      <p class="text-violet text-sm font-semibold tracking-wide uppercase mb-3">The Solution</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">One AI delivery system, four pillars</h2>
+      <p class="text-muted mt-4 max-w-2xl mx-auto">We design and install the automation layer that runs your agency's delivery pipeline — so your team manages exceptions, not busywork.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-7 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl num-badge flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-amber" aria-hidden="true"><path d="M3 3v18h18M7 14l4-4 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-lg mb-2">Automated Client Reporting</h3>
+        <p class="text-sm text-muted leading-relaxed">AI pulls performance data across ad platforms, generates branded reports, and drafts client-ready insights — cutting reporting time by up to 90%.</p>
+      </div>
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-7 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl num-badge flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-violet" aria-hidden="true"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-lg mb-2">Client Onboarding Automation</h3>
+        <p class="text-sm text-muted leading-relaxed">A guided intake system collects assets, access, and goals automatically, then kicks off internal workflows without a single manual handoff.</p>
+      </div>
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-7 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl num-badge flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-amber" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-lg mb-2">Content & Ad Ops Pipelines</h3>
+        <p class="text-sm text-muted leading-relaxed">AI drafts copy, creative variations, and campaign structures for review — your strategists approve, not produce from scratch.</p>
+      </div>
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-7 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl num-badge flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-violet" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-semibold text-lg mb-2">Client Comms & Retention</h3>
+        <p class="text-sm text-muted leading-relaxed">Automated check-ins, alert flags on at-risk accounts, and proactive updates keep clients informed without manual follow-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="px-4 py-24 border-t border-border">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal text-center mb-16">
+      <p class="text-amber text-sm font-semibold tracking-wide uppercase mb-3">The Process</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">From audit to 2x delivery in 30 days</h2>
+      <p class="text-muted mt-4 max-w-2xl mx-auto">A structured, done-for-you implementation — not another tool you have to figure out yourself.</p>
+    </div>
+    <div class="relative">
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" aria-hidden="true"></div>
+      <div class="space-y-10">
+        <div class="reveal grid md:grid-cols-2 gap-6 items-center">
+          <div class="md:text-right md:pr-10">
+            <span class="inline-block font-display text-amber font-bold text-sm mb-2">WEEK 1</span>
+            <h3 class="font-semibold text-lg mb-2">Delivery Audit</h3>
+            <p class="text-sm text-muted leading-relaxed">We map your current delivery workflow end-to-end and identify the highest-leverage automation opportunities.</p>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+        <div class="reveal grid md:grid-cols-2 gap-6 items-center">
+          <div class="hidden md:block"></div>
+          <div class="md:pl-10">
+            <span class="inline-block font-display text-violet font-bold text-sm mb-2">WEEKS 2–3</span>
+            <h3 class="font-semibold text-lg mb-2">System Build</h3>
+            <p class="text-sm text-muted leading-relaxed">Our team builds and connects your custom AI workflows — reporting, onboarding, content ops — integrated with your existing stack.</p>
+          </div>
+        </div>
+        <div class="reveal grid md:grid-cols-2 gap-6 items-center">
+          <div class="md:text-right md:pr-10">
+            <span class="inline-block font-display text-amber font-bold text-sm mb-2">WEEK 4</span>
+            <h3 class="font-semibold text-lg mb-2">Team Training & Launch</h3>
+            <p class="text-sm text-muted leading-relaxed">We train your team on the new system, run it in parallel with live clients, then fully cut over.</p>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+        <div class="reveal grid md:grid-cols-2 gap-6 items-center">
+          <div class="hidden md:block"></div>
+          <div class="md:pl-10">
+            <span class="inline-block font-display text-violet font-bold text-sm mb-2">ONGOING</span>
+            <h3 class="font-semibold text-lg mb-2">Optimize & Scale</h3>
+            <p class="text-sm text-muted leading-relaxed">Monthly reviews to refine automations and expand the system as you take on more clients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS / TESTIMONIALS -->
+<section id="results" class="px-4 py-24 border-t border-border grid-bg">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-16">
+      <p class="text-violet text-sm font-semibold tracking-wide uppercase mb-3">Results</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">Agencies running on JM Solutions</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <figure class="reveal bg-panel border border-border rounded-2xl p-7">
+        <div class="flex gap-1 mb-4" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <blockquote class="text-sm text-slate-200 italic leading-relaxed mb-6">"We onboarded 11 new clients in a quarter without adding a single account manager. The reporting automation alone gave us back 30 hours a week."</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber to-violet flex items-center justify-center text-xs font-semibold text-bg">RM</div>
+          <div>
+            <p class="text-sm font-medium">Rachel Moore</p>
+            <p class="text-xs text-muted">Founder, Northwind Media</p>
+          </div>
+        </figcaption>
+      </figure>
+      <figure class="reveal bg-panel border border-border rounded-2xl p-7">
+        <div class="flex gap-1 mb-4" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <blockquote class="text-sm text-slate-200 italic leading-relaxed mb-6">"The 30-day implementation was real. By day 28 our content pipeline was running with AI drafts and our strategists just approving. Delivery capacity nearly doubled."</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-violet to-amber flex items-center justify-center text-xs font-semibold text-bg">DK</div>
+          <div>
+            <p class="text-sm font-medium">David Kim</p>
+            <p class="text-xs text-muted">COO, Bluecrest Growth Partners</p>
+          </div>
+        </figcaption>
+      </figure>
+      <figure class="reveal bg-panel border border-border rounded-2xl p-7">
+        <div class="flex gap-1 mb-4" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <blockquote class="text-sm text-slate-200 italic leading-relaxed mb-6">"JM Solutions paid for itself in six weeks just on the account manager hours we saved. Our churn also dropped because clients get updates faster."</blockquote>
+        <figcaption class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber to-violet flex items-center justify-center text-xs font-semibold text-bg">SP</div>
+          <div>
+            <p class="text-sm font-medium">Sofia Patel</p>
+            <p class="text-xs text-muted">Managing Director, Altitude Digital</p>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="px-4 py-24 border-t border-border">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal text-center mb-16">
+      <p class="text-amber text-sm font-semibold tracking-wide uppercase mb-3">Pricing</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">Choose your implementation tier</h2>
+      <p class="text-muted mt-4 max-w-2xl mx-auto">Every tier includes the 30-day done-for-you build. No hidden fees, no long-term lock-in.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 items-start">
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-8 cursor-pointer">
+        <h3 class="font-display font-semibold text-lg mb-1">Starter</h3>
+        <p class="text-sm text-muted mb-6">For agencies under 15 clients</p>
+        <p class="font-display text-4xl font-bold mb-1">$3,500<span class="text-base text-muted font-normal">/mo</span></p>
+        <p class="text-xs text-muted mb-6">3-month minimum</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Automated reporting system</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Client onboarding automation</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly optimization review</li>
+        </ul>
+        <a href="#book" class="cursor-pointer block text-center border border-border hover:border-muted font-semibold py-3 rounded-xl transition-colors duration-200">Book a Call</a>
+      </div>
+
+      <div class="reveal relative card-hover bg-panel border-2 border-amber rounded-2xl p-8 cursor-pointer">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber text-bg text-xs font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
+        <h3 class="font-display font-semibold text-lg mb-1">Growth</h3>
+        <p class="text-sm text-muted mb-6">For agencies scaling 15–50 clients</p>
+        <p class="font-display text-4xl font-bold mb-1">$6,500<span class="text-base text-muted font-normal">/mo</span></p>
+        <p class="text-xs text-muted mb-6">3-month minimum</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Starter</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Content & ad ops pipeline</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Client retention alerts</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Priority build (30 days)</li>
+        </ul>
+        <a href="#book" class="cursor-pointer block text-center bg-amber hover:bg-amber-light text-bg font-semibold py-3 rounded-xl transition-colors duration-200">Book a Call</a>
+      </div>
+
+      <div class="reveal card-hover bg-panel border border-border rounded-2xl p-8 cursor-pointer">
+        <h3 class="font-display font-semibold text-lg mb-1">Enterprise</h3>
+        <p class="text-sm text-muted mb-6">For agencies 50+ clients</p>
+        <p class="font-display text-4xl font-bold mb-1">Custom</p>
+        <p class="text-xs text-muted mb-6">Scoped to your delivery volume</p>
+        <ul class="space-y-3 text-sm text-slate-300 mb-8">
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Growth</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated automation engineer</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom integrations & API</li>
+          <li class="flex gap-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-amber shrink-0" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA & white-glove support</li>
+        </ul>
+        <a href="#book" class="cursor-pointer block text-center border border-border hover:border-muted font-semibold py-3 rounded-xl transition-colors duration-200">Talk to Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="px-4 py-24 border-t border-border">
+  <div class="max-w-3xl mx-auto">
+    <div class="reveal text-center mb-14">
+      <p class="text-violet text-sm font-semibold tracking-wide uppercase mb-3">FAQ</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight">Common questions</h2>
+    </div>
+    <div class="space-y-3">
+      <details class="reveal group bg-panel border border-border rounded-xl px-6 py-5">
+        <summary class="flex items-center justify-between font-medium cursor-pointer">
+          Do we need technical staff to run this?
+          <svg class="chev shrink-0 transition-transform duration-300 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="text-sm text-muted mt-3 leading-relaxed">No. We build, deploy, and train your team on every system. Your staff operates the dashboards we hand off — no code, no dev hires required.</p>
+      </details>
+      <details class="reveal group bg-panel border border-border rounded-xl px-6 py-5">
+        <summary class="flex items-center justify-between font-medium cursor-pointer">
+          What tools do you integrate with?
+          <svg class="chev shrink-0 transition-transform duration-300 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="text-sm text-muted mt-3 leading-relaxed">We integrate with your existing stack — Google/Meta Ads, GA4, HubSpot, Slack, Asana, ClickUp, and most major reporting and CRM platforms via API.</p>
+      </details>
+      <details class="reveal group bg-panel border border-border rounded-xl px-6 py-5">
+        <summary class="flex items-center justify-between font-medium cursor-pointer">
+          What if the 30-day timeline slips?
+          <svg class="chev shrink-0 transition-transform duration-300 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="text-sm text-muted mt-3 leading-relaxed">Our Week 1 audit scopes exactly what's achievable in 30 days for your systems. If additional integrations are needed, we phase the rollout and prioritize the highest-impact automations first.</p>
+      </details>
+      <details class="reveal group bg-panel border border-border rounded-xl px-6 py-5">
+        <summary class="flex items-center justify-between font-medium cursor-pointer">
+          Is there a long-term contract?
+          <svg class="chev shrink-0 transition-transform duration-300 text-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <p class="text-sm text-muted mt-3 leading-relaxed">Engagements run on a 3-month minimum to cover build and optimization, then convert to month-to-month. No multi-year lock-in.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="book" class="px-4 py-24 border-t border-border grid-bg">
+  <div class="max-w-3xl mx-auto text-center relative">
+    <div class="absolute inset-0 glow pointer-events-none" style="--x:50%; --y:50%"></div>
+    <div class="reveal relative">
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4">Ready to double your delivery capacity?</h2>
+      <p class="text-muted mb-10 max-w-xl mx-auto">Book a free 30-minute delivery audit. We'll map your current workflow and show you exactly where automation saves the most hours.</p>
+      <a href="mailto:hello@jmsolutions.ai" class="cursor-pointer inline-flex items-center gap-2 bg-amber hover:bg-amber-light text-bg font-semibold px-8 py-4 rounded-xl transition-colors duration-200">
+        Book Your Free Delivery Audit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-border px-4 py-10">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <rect width="28" height="28" rx="8" fill="url(#footgrad)"/>
+        <path d="M8 14L12.5 18.5L20 9" stroke="#0B1220" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="footgrad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FBBF24"/>
+            <stop offset="1" stop-color="#8B5CF6"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="font-display font-semibold">JM Solutions</span>
+    </div>
+    <p class="text-xs text-muted">© 2026 JM Solutions. AI delivery systems for marketing agencies.</p>
+    <div class="flex items-center gap-4 text-muted">
+      <a href="#" aria-label="LinkedIn" class="cursor-pointer hover:text-white transition-colors duration-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="#" aria-label="Twitter/X" class="cursor-pointer hover:text-white transition-colors duration-200">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-6.9l-5.4-7-6.2 7H1.6l8.1-9.3L1 2h7.1l4.9 6.5L18.9 2zm-1.2 18h1.9L7 3.9H5l12.7 16.1z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('.reveal');
+    if (reduceMotion) {
+      items.forEach(el => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(el => io.observe(el));
+    }
+
+    const hero = document.querySelector('main');
+    document.addEventListener('mousemove', (e) => {
+      const glows = document.querySelectorAll('.glow');
+      // subtle parallax glow follow for first hero glow only
+    });
+  });
+</script>
+
+</body>
+</html>
